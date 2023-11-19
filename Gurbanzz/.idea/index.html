@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gurbanz</title>
+  <link rel="stylesheet" type="text/css" href="basicStyle.css">
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">Gurbanz</a>
+  <ul>
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="explore.html">Explore</a></li>
+    <li><a href="route.html">Route</a></li>
+    <li><a href="travel.html">Travel</a></li>
+  </ul>
+</header>
+<section>
+  <img src="stars.png" id="stars">
+  <img src="berg1.png" id="mountains_behind">
+  <h2 id="text">Discover Gurbanz</h2>
+  <img src="berg2.png" id="mountains_front">
+</section>
+<div class="sec" id="sec">
+  <h2>Title</h2>
+  <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    t vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    <br><br>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    t vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    <br><br>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    t vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+  </p>
+</div>
+<script>
+  let stars = document.getElementById('stars');
+  let mountains_behind = document.getElementById('mountains_behind');
+  let text = document.getElementById('text');
+  let btn = document.getElementById('btn');
+  let mountains_front = document.getElementById('mountains_front');
+  let header = document.querySelector('header');
+
+  window.addEventListener('scroll', function() {
+    let value = window.scrollY;
+    stars.style.left = value * 0.25 + 'px';
+    mountains_behind.style.top = value * 0.5 + 'px';
+    mountains_front.style.top = value * 0 + 'px';
+    text.style.marginRight = value * 4 + 'px';
+    text.style.marginTop = value * 1.5 + 'px';
+    btn.style.marginTop = value * 1.5 + 'px';
+    header.style.top = value * 0.5 + 'px';
+  })
+</script>
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
