@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gurbanz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
 </head>
 <body>
@@ -15,6 +16,153 @@
             <li><a href="../pages/travel.html">Travel</a></li>
         </ul>
     </header>
-</div>
+
+    <div id="hikeListContainer" class="container mt-4">
+        <div class="row">
+            <!-- JavaScript will populate this container with hike boxes -->
+        </div>
+    </div>
+
+    <script>
+        var jsonData = {
+            "name": "Gurbanzz",
+            "version": "1.0.0",
+            "dependencies": {
+            },
+
+            "hike": [
+                {
+                    "hike_id": 1,
+                    "name": "Alplochschlucht - Kirchle loop from Kehlegg",
+                    "distance": 8.66,
+                    "duration_hour": 2,
+                    "duration_min": 50,
+                    "height_difference": 390,
+                    "fitness_level": 3,
+                    "description": "This route is mostly comprised of accessible pathways, though it does require sure-footedness. Additionally, the starting point of the tour is conveniently reachable using public transportation.",
+                    "stamina": 3,
+                    "experience": 2,
+                    "scenery": 4,
+                    "author": "natureNick",
+                    "date": "2023-04-15",
+                    "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>",
+                    "video":"video1.mp4"
+                },
+                {
+                    "hike_id": 2,
+                    "name": "Ludesch Dorfrundweg",
+                    "distance": 7.08,
+                    "duration_hour": 2,
+                    "duration_min": 44,
+                    "height_difference": 110,
+                    "fitness_level": 2,
+                    "description": "The paths are predominantly accessible, but sure-footedness is necessary. Explore the picturesque surroundings and discover the village of Ludesch on this leisurely stroll.",
+                    "stamina": 2,
+                    "experience": 3,
+                    "scenery": 3,
+                    "author": "maxi58",
+                    "date": "2023-03-05",
+                    "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>",
+                    "video":"video2.mp4"
+                },
+                {
+                    "hike_id": 3,
+                    "name": "Lünersee (Südufer) - Lünersee loop from Brand",
+                    "distance": 9.90,
+                    "duration_hour": 3,
+                    "duration_min": 59,
+                    "height_difference": 500,
+                    "fitness_level": 4,
+                    "description": "To embark on this journey, it's essential to possess alpine experience, as well as ensuring you have sure-footedness and sturdy footwear.",
+                    "stamina": 4,
+                    "experience": 4,
+                    "scenery": 5,
+                    "author": "willi88",
+                    "date": "2023-04-25",
+                    "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>",
+                    "video":"video3.mp4"
+                },
+                {
+                    "hike_id": 4,
+                    "name": "Bürser Schlucht - Schluchtweg loop from Bürs",
+                    "distance": 4.26,
+                    "duration_hour": 1,
+                    "duration_min": 34,
+                    "height_difference": 150,
+                    "fitness_level": 3,
+                    "description": "While the majority of the paths are easily navigable, it's important to have good balance and sure-footedness. Additionally, the tour's starting point is conveniently accessible via public transportation.",
+                    "stamina": 2,
+                    "experience": 2,
+                    "scenery": 3,
+                    "author": "trekTina",
+                    "date": "2023-06-20",
+                    "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>",
+                    "video":"video4.mp4"
+                },
+                {
+                    "hike_id": 5,
+                    "name": "Bodenseepanorama - Bodensee loop from Bregenz",
+                    "distance": 12.6,
+                    "duration_hour": 4,
+                    "duration_min": 40,
+                    "height_difference": 680,
+                    "fitness_level": 1,
+                    "description": "The trails are mostly accessible, but sure-footedness is essential.",
+                    "stamina": 3,
+                    "experience": 2,
+                    "scenery": 4,
+                    "author": "alex82",
+                    "date": "2023-02-10",
+                    "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>",
+                    "video":"video5.mp4"
+                }
+            ]
+        };
+
+        function generateHikeHTML(hike) {
+            return `
+        <div class="col-md-10 mb-4">
+            <div class="card rounded">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                          <video autoplay loop muted style="height: 100%; width: 100%; object-fit: cover;" class="rounded">
+                            <source src="../videos/${hike.video}" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${hike.name}</h5>
+                            <p class="card-text">Distance: ${hike.distance} km</p>
+                            <p class="card-text">Duration: ${hike.duration_hour}h ${hike.duration_min}min</p>
+                            <p class="card-text">Height Difference: ${hike.height_difference}m</p>
+                            <button class="btn btn-primary" style="background: linear-gradient(#9fc49f, #232222)" onclick="showDetails(${hike.hike_id})">More Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-100"></div> <!-- Add a line break after each card -->
+    `;
+        }
+        function showDetails(hikeId) {
+            // Add logic to show details for the specific hike
+            alert(`Details for Hike ID ${hikeId}`);
+        }
+
+        function displayHikes() {
+            var hikeListContainer = document.getElementById('hikeListContainer');
+
+            jsonData.hike.forEach(function (hike) {
+                var hikeHTML = generateHikeHTML(hike);
+                hikeListContainer.innerHTML += hikeHTML;
+            });
+        }
+        displayHikes();
+    </script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
