@@ -4,8 +4,9 @@
   "dependencies": {
   },
 
-  "hikes": [
+  "hike": [
     {
+      "hike_id": 1,
       "name": "Alplochschlucht - Kirchle loop from Kehlegg",
       "distance": 8.66,
       "duration_hour": 2,
@@ -16,12 +17,12 @@
       "stamina": 3,
       "experience": 2,
       "scenery": 4,
-      "suggested_month": "[10,15)",
       "author": "natureNick",
       "date": "2023-04-15",
       "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>"
     },
     {
+      "hike_id": 2,
       "name": "Ludesch Dorfrundweg",
       "distance": 7.08,
       "duration_hour": 2,
@@ -32,12 +33,12 @@
       "stamina": 2,
       "experience": 3,
       "scenery": 3,
-      "suggested_month": "[2,8)",
       "author": "maxi58",
       "date": "2023-03-05",
       "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>"
     },
     {
+      "hike_id": 3,
       "name": "Lünersee (Südufer) - Lünersee loop from Brand",
       "distance": 9.90,
       "duration_hour": 3,
@@ -48,12 +49,12 @@
       "stamina": 4,
       "experience": 4,
       "scenery": 5,
-      "suggested_month": "[5,8)",
       "author": "willi88",
       "date": "2023-04-25",
       "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>"
     },
     {
+      "hike_id": 4,
       "name": "Bürser Schlucht - Schluchtweg loop from Bürs",
       "distance": 4.26,
       "duration_hour": 1,
@@ -64,12 +65,12 @@
       "stamina": 2,
       "experience": 2,
       "scenery": 3,
-      "suggested_month": "[6,9)",
       "author": "trekTina",
       "date": "2023-06-20",
       "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>"
     },
     {
+      "hike_id": 5,
       "name": "Bodenseepanorama - Bodensee loop from Bregenz",
       "distance": 12.6,
       "duration_hour": 4,
@@ -80,7 +81,6 @@
       "stamina": 3,
       "experience": 2,
       "scenery": 4,
-      "suggested_month": "[1,8)",
       "author": "alex82",
       "date": "2023-02-10",
       "gpx": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?><gpx version=\"1.1\" creator=\"Journey\"><wpt lat=\"47.48751300895658\" lon=\"9.721970059446186\"><name>a</name></wpt><wpt lat=\"47.137424646293866\" lon=\"12.325386919177907\"><name>b</name></wpt></gpx>"
