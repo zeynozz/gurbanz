@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
         <title>Gurbanz</title>
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
 <body>
 <div class="index-background">
-    <!--header soll als eigene navbar.jsp dargestellt werden!-->
+    <!--header soll als eigene navbar.html dargestellt werden!-->
     <header>
         <a href="../pages/index.html" class="logo">Gurbanz</a>
         <ul>
@@ -29,26 +30,30 @@
             Prepare to unveil the enigma of extraordinary hiking escapades as you step into the captivating realm of Gurbanz.
             Here, the magnetic pull of contemporary allure seamlessly converges with the untamed splendor of the mountains, creating a tapestry of adventure that transcends the ordinary.
             Immerse yourself in the essence of exploration as you delve into the depths of our sleek, dark-themed platform — a digital gateway to a world where every click is an invitation to discover trails that redefine the very essence of hiking.
-        </p><br><br><br>
+        </p>
         <h2>Explore the Extraordinary</h2>
         <p>
             Immerse yourself in the enchanting landscapes as you navigate through our carefully curated trails.
             From lush forests to rugged terrains, each journey is a story waiting to be told.
-        </p><br><br><br>
+        </p>
+        <div class="container mt-4" style="justify-content: center">
+            <div class="image-stack">
+                <img src="../pictures/landscape1.jpg" alt="Bild 1">
+                <img src="../pictures/landscape2.jpg" alt="Bild 2">
+                <img src="../pictures/landscape3.jpg" alt="Bild 3">
+            </div>
+        </div>
         <h2>Modern Elegance</h2>
         <p>At Gurbanz, we believe in the beauty of simplicity.
             Our website's modern design, accentuated by sleek animations, mirrors the essence of the landscapes you're about to discover.
             Navigate seamlessly through a world of adventure that unfolds with every click.
-        </p><br><br><br>
+        </p>
         <h2>Chasing the Aurora</h2>
         <p>
             Our dark-themed backdrop, reminiscent of the ethereal glow of the Northern Lights, sets the stage for your virtual expedition.
             Subtle shades of grey and green create an ambiance that's both mysterious and inviting, much like the unexplored trails that await you.
-        </p><br><br><br>
+        </p>
     </div>
-</div>
-
-<div class="index-background2">
 </div>
     <!--script soll im package JS eingefügt werden!-->
     <script>
@@ -70,5 +75,6 @@
             header.style.top = value * 0.5 + 'px';
         })
     </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

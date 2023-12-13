@@ -1,0 +1,114 @@
+section
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+section::before
+{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #232222,transparent);
+    z-index: 1000;
+}
+section img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section img#mountains_front
+{
+    z-index: 10;
+}
+#text
+{
+    position: absolute;
+    color: #fff;
+    right: -350px;
+    white-space: nowrap;
+    font-size: 7.5vw;
+    z-index: 9;
+
+}
+#btn
+{
+    text-decoration: none;
+    padding: 8px 30px;
+    display: inline-block;
+    border-radius: 40px;
+    background: #fff;
+    color: #232222;
+    font-size: 1.5em;
+    transform: translateY(100px);
+}
+
+.sec
+{
+    position: relative;
+    padding: 300px;
+    background: linear-gradient(#232222, #9fc49f);
+    text-align: center;
+
+}
+.sec h2
+{
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.sec p
+{
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 100px;
+}
+
+.image-stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1000px;
+    overflow: hidden;
+    margin-right: 600px;
+}
+
+.image-stack img {
+    position: absolute;
+    width: 700px;
+    height: 400px;
+    transition: transform 0.5s ease;
+    border: 5px solid white;
+}
+
+.image-stack img:nth-child(1) {
+    transform: rotateZ(20deg) translateX(0%) translateY(10%) scale(0.9);
+    z-index: 3;
+}
+
+.image-stack img:nth-child(2) {
+    transform: rotateZ(0deg) translateX(0%) translateY(0) scale(0.9);
+    z-index: 2;
+}
+
+.image-stack img:nth-child(3) {
+    transform: rotateZ(-20deg) translateX(0%) translateY(10%) scale(0.9);
+    z-index: 1;
+}
+.image-stack img:hover {
+    transform: scale(1.1);
+}
