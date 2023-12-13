@@ -1,0 +1,33 @@
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+}
+
+.search-bar {
+    position: absolute;
+    margin-left: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    height: 50px;
+}
+
+.btn:hover{
+    background-color:#647868;
+    transform: scale(1.2)
+}
