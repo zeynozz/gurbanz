@@ -82,9 +82,8 @@ section img#mountains_front
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    perspective: 1000px;
+    perspective: 100px;
     overflow: hidden;
-    margin-right: 600px;
 }
 
 .image-stack img {
@@ -93,6 +92,8 @@ section img#mountains_front
     height: 400px;
     transition: transform 0.5s ease;
     border: 5px solid white;
+    margin-right: 500px;
+    margin-top: 50px;
 }
 
 .image-stack img:nth-child(1) {
