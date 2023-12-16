@@ -1,0 +1,22 @@
+.profile-background {
+    background-color: #232222;
+    background-image: url('../pictures/stars.png');
+    background-size: cover; /* Beispiel: Bildgröße anpassen */
+    background-repeat: no-repeat; /* Beispiel: Wiederholung deaktivieren */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.card {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    border: 2px solid white;
+    border-radius: 30px;
+    height:500px;
+    width: 700px;
+}
