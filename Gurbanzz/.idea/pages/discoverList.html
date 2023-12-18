@@ -2,19 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gurbanz</title>
+    <title>Gurbanz | Discover Hikes </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
 </head>
 <body>
 <div class="index-background">
     <header>
-        <a href="../pages/index.html" class="logo">Gurbanz</a>
+        <a href="../pages/home.html" class="logo">Gurbanz</a>
         <ul>
-            <li><a href="../pages/index.html">Home</a></li>
+            <li><a href="../pages/home.html">Home</a></li>
             <li><a href="../pages/discover.html">Discover</a></li>
-            <li><a href="../pages/explore.html" class="active">Explore</a></li>
-            <li><a href="../pages/travel.html">Travel</a></li>
+            <li><a href="../pages/discoverList.html" class="active">DiscoverList</a></li>
         </ul>
     </header>
 
@@ -136,7 +135,7 @@
                             <p class="card-text">Distance: ${hike.distance} km</p>
                             <p class="card-text">Duration: ${hike.duration_hour}h ${hike.duration_min}min</p>
                             <p class="card-text">Height Difference: ${hike.height_difference}m</p>
-                            <button class="btn btn-primary" style="background: linear-gradient(#9fc49f, #232222)" onclick="showDetails(${hike.hike_id})">More Details</button>
+                            <button class="btn btn-primary btn-outline-light" style="background: linear-gradient(#232222, #9fc49f)" onclick="showDetails(${hike.hike_id})">More Details</button>
                         </div>
                     </div>
                 </div>
