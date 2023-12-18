@@ -20,17 +20,70 @@
         </ul>
         </header>
         <div class="container search-bar">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="color: white; width: 600px; height:50px; opacity: 0.7; background: #232222">
+            <form class="form-inline" onsubmit="searchHikes(event)">
+                <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="color: white; width: 600px; height:50px; opacity: 0.7; background: #232222">
                 <button class="btn btn-outline-light my-4 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-    </div>
+        <div id="hikeListContainer" class="container mt-4">
+            <!-- Hier werden die Suchergebnisse angezeigt -->
+        </div>
+        <script>
+            function displayHikeResults(results) {
+                var hikeListContainer = document.getElementById('hikeListContainer');
+                hikeListContainer.innerHTML = '';
+
+                results.forEach(function (hike) {
+                    var hikeHTML = generateHikeHTML(hike);
+                    hikeListContainer.innerHTML += hikeHTML;
+                });
+            }
+
+            function searchHikes(event) {
+                event.preventDefault();
+
+                var searchInput = document.getElementById('searchInput').value.toLowerCase();
+                fetch('../JSON/package.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        var results = data.hike.filter(function (hike) {
+                            return hike.name.toLowerCase().includes(searchInput);
+                        });
+
+                        if (results.length > 0) {
+                            // Weiterleitung zur Seite mit den Wanderungen, wenn Ergebnisse gefunden wurden
+                            window.location.href = "../pages/discoverList.html"; // Passe den Pfad entsprechend an
+                        } else {
+                            // Handle, wenn keine Ergebnisse gefunden wurden
+                            console.log('Keine Ergebnisse gefunden');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fehler beim Abrufen der Daten:', error);
+                    });
+            }
+
+            function generateHikeHTML(hike) {
+                // Erstelle hier den HTML-Code für eine einzelne Wanderung basierend auf den Hike-Daten
+                var hikeHTML = `
+                <div class="hike">
+                    <h2>${hike.name}</h2>
+                    <p>Distance: ${hike.distance} km</p>
+                    <p>Duration: ${hike.duration_hour} hours ${hike.duration_min} minutes</p>
+                    <p>Height Difference: ${hike.height_difference} m</p>
+                    <p>Fitness Level: ${hike.fitness_level}</p>
+                    <p>Description: ${hike.description}</p>
+                </div>
+    `;
+                return hikeHTML;
+            }
 
 
+        </script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
 </body>
 </html>
