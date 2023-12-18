@@ -51,10 +51,8 @@
                         });
 
                         if (results.length > 0) {
-                            // Weiterleitung zur Seite mit den Wanderungen, wenn Ergebnisse gefunden wurden
-                            window.location.href = "../pages/discoverList.html"; // Passe den Pfad entsprechend an
+                            window.location.href = "../pages/discoverList.html";
                         } else {
-                            // Handle, wenn keine Ergebnisse gefunden wurden
                             console.log('Keine Ergebnisse gefunden');
                         }
                     })
@@ -64,7 +62,6 @@
             }
 
             function generateHikeHTML(hike) {
-                // Erstelle hier den HTML-Code für eine einzelne Wanderung basierend auf den Hike-Daten
                 var hikeHTML = `
                 <div class="hike">
                     <h2>${hike.name}</h2>
