@@ -8,17 +8,6 @@
     align-items: center;
 }
 
-.card {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
-    padding: 20px;
-    border: 2px solid white;
-    border-radius: 30px;
-    height:500px;
-    width: 700px;
-}
-
 .container {
     display: flex;
     justify-content: center;
@@ -35,11 +24,12 @@
     margin-bottom: 20px;
     background-color: #e0e0e0;
     color: white;
+    margin-left:20px;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     border: 2px solid white;
     border-radius: 30px;
-
+    text-align: center;
 }
 
 .right-box {
@@ -47,10 +37,11 @@
     width: 400px;
     margin-bottom: 20px;
     background-color: #f0f0f0;
-    margin-left:450px;
+    margin-left:470px;
     color: white;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(4px);
     border: 2px solid white;
     border-radius: 30px;
+    text-align: center;
 }
