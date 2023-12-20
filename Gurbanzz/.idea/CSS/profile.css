@@ -1,14 +1,12 @@
 .profile-background {
     background-color: #232222;
     background-image: url('../pictures/stars.png');
-    background-size: cover; /* Beispiel: Bildgröße anpassen */
-    background-repeat: no-repeat; /* Beispiel: Wiederholung deaktivieren */
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
 
 .card {
     color: white;
@@ -19,4 +17,40 @@
     border-radius: 30px;
     height:500px;
     width: 700px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: centert;
+    margin-top:250px;
+    margin-right: 50px;
+    margin-left: 50px;
+
+}
+
+.left-box {
+    height: 600px;
+    width: 600px;
+    margin-bottom: 20px;
+    background-color: #e0e0e0;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 2px solid white;
+    border-radius: 30px;
+
+}
+
+.right-box {
+    height: 280px;
+    width: 400px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    margin-left:450px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 2px solid white;
+    border-radius: 30px;
 }
