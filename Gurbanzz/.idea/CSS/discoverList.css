@@ -1,0 +1,21 @@
+
+.btn {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    height: 50px;
+}
+
+.btn:hover{
+    background-color:#647868;
+    transform: scale(1.2)
+}
+
+
+.list-background {
+    background-color: #232222;
+    background-image: url('../pictures/stars.png');
+    background-repeat: repeat; /* Beispiel: Wiederholung deaktivieren */
+    overflow-x: hidden;
+}
