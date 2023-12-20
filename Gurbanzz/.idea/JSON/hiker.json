@@ -1,0 +1,26 @@
+{
+  "name": "Gurbanzz",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "hiker": [
+    {
+      "name": "jamesbond07",
+      "birthday": "15-05-2005",
+      "email": "max.mustermann@example.com",
+      "image": "url/zum/bild1.jpg"
+    },
+    {
+      "name": "zeyno38",
+      "birthday": "22-11-1999",
+      "email": "anna.schmidt@example.com",
+      "image": "url/zum/bild2.jpg"
+    },
+    {
+      "name": "neilarmstrong69",
+      "birthday": "10-07-2000",
+      "email": "john.doe@example.com",
+      "image": "url/zum/bild3.jpg"
+    }
+  ]
+}
