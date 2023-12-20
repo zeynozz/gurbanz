@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Discover | Gurbanz</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../CSS/style.css">
-        <link rel="stylesheet" type="text/css" href="../CSS/discover.css">
-    </head>
-    <body>
-        <video id="background-video" class="fullscreen-bg__video" autoplay loop muted style="height: 100%; width: 100%; object-fit: cover;">
-            <source src="../videos/discover_background.mp4" type="video/mp4">
-        </video>
-        <header>
-        <a href="../pages/home.html" class="logo">Gurbanz</a>
-        <ul>
-            <li><a href="../pages/home.html">Home</a></li>
-            <li><a href="../pages/discover.html">Discover</a></li>
-            <li><a href ="../pages/profile.html">Profile</a></li>
-        </ul>
-        </header>
-        <div class="container search-bar">
-            <form class="form-inline" onsubmit="searchHikes(event)">
-                <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="color: white; width: 600px; height:50px; opacity: 0.7; background: #232222">
-                <button class="btn btn-outline-light my-4 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-        <div id="hikeListContainer" class="container mt-4">
-            <!-- Hier werden die Suchergebnisse angezeigt -->
-        </div>
-        <script>
-            function displayHikeResults(results) {
-                var hikeListContainer = document.getElementById('hikeListContainer');
-                hikeListContainer.innerHTML = '';
+<head>
+    <meta charset="UTF-8">
+    <title>Discover | Gurbanz</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/discover.css">
+</head>
+<body>
+<video id="background-video" class="fullscreen-bg__video" autoplay loop muted style="height: 100%; width: 100%; object-fit: cover;">
+    <source src="../videos/discover_background.mp4" type="video/mp4">
+</video>
+<header>
+    <a href="../pages/home.html" class="logo">Gurbanz</a>
+    <ul>
+        <li><a href="../pages/home.html">Home</a></li>
+        <li><a href="../pages/discover.html">Discover</a></li>
+        <li><a href ="../pages/profile.html">Profile</a></li>
+    </ul>
+</header>
+<div class="container search-bar">
+    <form class="form-inline" onsubmit="searchHikes(event)">
+        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="color: white; width: 600px; height:50px; opacity: 0.7; background: #232222">
+        <button class="btn btn-outline-light my-4 my-sm-0" type="submit">Search</button>
+    </form>
+</div>
+<div id="hikeListContainer" class="container mt-4">
+    <!-- Hier werden die Suchergebnisse angezeigt -->
+</div>
+<script>
+    function displayHikeResults(results) {
+        var hikeListContainer = document.getElementById('hikeListContainer');
+        hikeListContainer.innerHTML = '';
 
-                results.forEach(function (hike) {
-                    var hikeHTML = generateHikeHTML(hike);
-                    hikeListContainer.innerHTML += hikeHTML;
+        results.forEach(function (hike) {
+            var hikeHTML = generateHikeHTML(hike);
+            hikeListContainer.innerHTML += hikeHTML;
+        });
+    }
+
+    function searchHikes(event) {
+        event.preventDefault();
+
+        var searchInput = document.getElementById('searchInput').value.toLowerCase();
+        fetch('../JSON/package.json')
+            .then(response => response.json())
+            .then(data => {
+                var results = data.hike.filter(function (hike) {
+                    return hike.name.toLowerCase().includes(searchInput);
                 });
-            }
 
-            function searchHikes(event) {
-                event.preventDefault();
+                if (results.length > 0) {
+                    window.location.href = "../pages/discoverList.html";
+                } else {
+                    window.location.href = "../pages/pageNotFound.html";
+                    console.log('Keine Ergebnisse gefunden');
 
-                var searchInput = document.getElementById('searchInput').value.toLowerCase();
-                fetch('../JSON/package.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        var results = data.hike.filter(function (hike) {
-                            return hike.name.toLowerCase().includes(searchInput);
-                        });
+                }
+            })
+            .catch(error => {
+                console.error('Fehler beim Abrufen der Daten:', error);
+            });
+    }
 
-                        if (results.length > 0) {
-                            window.location.href = "../pages/discoverList.html";
-                        } else {
-                            console.log('Keine Ergebnisse gefunden');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Fehler beim Abrufen der Daten:', error);
-                    });
-            }
-
-            function generateHikeHTML(hike) {
-                var hikeHTML = `
+    function generateHikeHTML(hike) {
+        var hikeHTML = `
                 <div class="hike">
                     <h2>${hike.name}</h2>
                     <p>Distance: ${hike.distance} km</p>
@@ -72,15 +74,15 @@
                     <p>Description: ${hike.description}</p>
                 </div>
     `;
-                return hikeHTML;
-            }
+        return hikeHTML;
+    }
 
 
-        </script>
+</script>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </body>
 </html>

@@ -1,0 +1,7 @@
+.hikeList-background {
+    background-color: #232222;
+    background-image: url('../pictures/stars.png');
+    background-repeat: repeat;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
