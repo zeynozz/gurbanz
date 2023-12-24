@@ -29,16 +29,6 @@
     <!-- Hier werden die Suchergebnisse angezeigt -->
 </div>
 <script>
-    function displayHikeResults(results) {
-        var hikeListContainer = document.getElementById('hikeListContainer');
-        hikeListContainer.innerHTML = '';
-
-        results.forEach(function (hike) {
-            var hikeHTML = generateHikeHTML(hike);
-            hikeListContainer.innerHTML += hikeHTML;
-        });
-    }
-
     function searchHikes(event) {
         event.preventDefault();
 
@@ -51,16 +41,26 @@
                 });
 
                 if (results.length > 0) {
-                    window.location.href = "../pages/discoverList.html";
+                    // Übergeben Sie den gesuchten Namen als Parameter in der URL
+                    window.location.href = `../pages/discoverList.html?name=${encodeURIComponent(searchInput)}`;
                 } else {
                     window.location.href = "../pages/pageNotFound.html";
                     console.log('Keine Ergebnisse gefunden');
-
                 }
             })
             .catch(error => {
                 console.error('Fehler beim Abrufen der Daten:', error);
             });
+    }
+
+    function displayHikeResults(results) {
+        var hikeListContainer = document.getElementById('hikeListContainer');
+        hikeListContainer.innerHTML = '';
+
+        results.forEach(function (hike) {
+            var hikeHTML = generateHikeHTML(hike);
+            hikeListContainer.innerHTML += hikeHTML;
+        });
     }
 
     function generateHikeHTML(hike) {
@@ -76,8 +76,6 @@
     `;
         return hikeHTML;
     }
-
-
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

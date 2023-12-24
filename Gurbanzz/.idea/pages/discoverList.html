@@ -31,25 +31,29 @@
     </div>
   </div>
 
-  <!-- ... Existing code ... -->
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       fetch('../JSON/discover.json')
               .then(response => response.json())
               .then(data => {
-                displayHikes(data.hike);
+                // Extrahieren Sie den Namen aus der URL
+                var urlSearchParams = new URLSearchParams(window.location.search);
+                var searchName = urlSearchParams.get('name');
+                displayHikes(data.hike, searchName);
               })
               .catch(error => {
                 console.error('Fehler beim Laden der JSON-Daten:', error);
               });
 
-      function displayHikes(hikes) {
+      function displayHikes(hikes, searchName) {
         var hikeListContainer = document.getElementById('hikeListContainer');
 
         hikes.forEach(function(hike) {
-          var hikeHTML = generateHikeHTML(hike);
-          hikeListContainer.innerHTML += hikeHTML;
+          // Nur den Hike mit dem gesuchten Namen anzeigen
+          if (hike.name.toLowerCase().includes(searchName)) {
+            var hikeHTML = generateHikeHTML(hike);
+            hikeListContainer.innerHTML += hikeHTML;
+          }
         });
       }
 
@@ -84,9 +88,6 @@
       }
     });
   </script>
-
-  <!-- ... Remaining code ... -->
-
 
   <!-- Bootstrap JS and Popper.js -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
