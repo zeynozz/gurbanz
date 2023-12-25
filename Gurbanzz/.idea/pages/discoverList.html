@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Gurbanz | Discover Hikes </title>
+  <title>Gurbanz | Discover Hikes</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../CSS/style.css">
   <link rel="stylesheet" type="text/css" href="../CSS/discoverList.css">
@@ -19,47 +19,45 @@
   </header>
 
   <div class="container search-bar" style="margin-top: 150px">
-    <form class="form-inline" onsubmit="searchHikes(event)">
+    <form id="searchForm" class="form-inline">
       <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="color: white; width: 825px; height:50px; opacity: 0.9; background: #232222">
-      <button class="btn btn-outline-light my-4 my-sm-0" type="submit" onclick="window.location.href='../pages/discoverList.html'">Search</button>
+      <button class="btn btn-outline-light my-4 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 
   <div id="hikeListContainer" class="container" style="margin-top: 50px; opacity: 0.9;">
     <div class="row">
-      <!-- JavaScript will populate this container with hike boxes -->
     </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      fetch('../JSON/discover.json')
+      fetch('../JSON/package.json')
               .then(response => response.json())
               .then(data => {
-                // Extrahieren Sie den Namen aus der URL
+                // Extract the name from the URL
                 var urlSearchParams = new URLSearchParams(window.location.search);
                 var searchName = urlSearchParams.get('name');
                 displayHikes(data.hike, searchName);
 
-                // Anzeige des Suchbegriffs im Suchfeld
+                // Display the search term in the search field
                 var searchInput = document.getElementById('searchInput');
                 if (searchName) {
                   searchInput.value = decodeURIComponent(searchName);
                 }
-
-                // Weitere Logik für die Anzeige der Suchergebnisse ...
               })
               .catch(error => {
-                console.error('Fehler beim Laden der JSON-Daten:', error);
+                console.error('Error loading JSON data:', error);
               });
 
-
-    function displayHikes(hikes, searchName) {
+      // Function to display search results
+      function displayHikes(results, searchName) {
         var hikeListContainer = document.getElementById('hikeListContainer');
+        hikeListContainer.innerHTML = '';
 
-        hikes.forEach(function(hike) {
-          // Nur den Hike mit dem gesuchten Namen anzeigen
-          if (hike.name.toLowerCase().includes(searchName)) {
+        results.forEach(function (hike) {
+          // Only display the hike with the searched name
+          if (hike.name.toLowerCase().includes(searchName.toLowerCase())) {
             var hikeHTML = generateHikeHTML(hike);
             hikeListContainer.innerHTML += hikeHTML;
           }
@@ -92,8 +90,37 @@
       `;
       }
 
+      // Function to get the video path
       function getVideoPath(videoName) {
         return `../videos/${videoName}`;
+      }
+
+      // Bind the searchHikes function to the form's onsubmit event
+      document.getElementById('searchForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        searchHikes(event);
+      });
+
+      // Function for searching hikes
+      function searchHikes(event) {
+        var searchInput = document.getElementById('searchInput').value.toLowerCase();
+        fetch('../JSON/package.json')
+                .then(response => response.json())
+                .then(data => {
+                  var results = data.hike.filter(function (hike) {
+                    return hike.name.toLowerCase().includes(searchInput);
+                  });
+
+                  if (results.length > 0) {
+                    window.location.href = `../pages/discoverList.html?name=${encodeURIComponent(searchInput)}`;
+                  } else {
+                    window.location.href = "../pages/pageNotFound.html";
+                    console.log('No results found');
+                  }
+                })
+                .catch(error => {
+                  console.error('Error fetching data:', error);
+                });
       }
     });
   </script>
