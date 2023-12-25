@@ -32,7 +32,7 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       fetch('../JSON/discover.json')
               .then(response => response.json())
               .then(data => {
@@ -40,12 +40,21 @@
                 var urlSearchParams = new URLSearchParams(window.location.search);
                 var searchName = urlSearchParams.get('name');
                 displayHikes(data.hike, searchName);
+
+                // Anzeige des Suchbegriffs im Suchfeld
+                var searchInput = document.getElementById('searchInput');
+                if (searchName) {
+                  searchInput.value = decodeURIComponent(searchName);
+                }
+
+                // Weitere Logik für die Anzeige der Suchergebnisse ...
               })
               .catch(error => {
                 console.error('Fehler beim Laden der JSON-Daten:', error);
               });
 
-      function displayHikes(hikes, searchName) {
+
+    function displayHikes(hikes, searchName) {
         var hikeListContainer = document.getElementById('hikeListContainer');
 
         hikes.forEach(function(hike) {
