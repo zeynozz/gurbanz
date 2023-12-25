@@ -26,7 +26,6 @@
     </form>
 </div>
 <div id="hikeListContainer" class="container mt-4">
-    <!-- Hier werden die Suchergebnisse angezeigt -->
 </div>
 <script>
     function searchHikes(event) {
@@ -41,7 +40,6 @@
                 });
 
                 if (results.length > 0) {
-                    // Übergeben Sie den gesuchten Namen als Parameter in der URL
                     window.location.href = `../pages/discoverList.html?name=${encodeURIComponent(searchInput)}`;
                 } else {
                     window.location.href = "../pages/pageNotFound.html";

@@ -13,7 +13,7 @@
     <a href="../pages/home.html" class="logo">Gurbanz</a>
     <ul>
       <li><a href="../pages/home.html">Home</a></li>
-      <li><a href="../pages/discover.html">Discover</a></li>
+      <li><a href="../pages/discover.html" class="active">Discover</a></li>
       <li><a href ="../pages/profile.html">Profile</a></li>
     </ul>
   </header>
@@ -50,13 +50,11 @@
                 console.error('Error loading JSON data:', error);
               });
 
-      // Function to display search results
       function displayHikes(results, searchName) {
         var hikeListContainer = document.getElementById('hikeListContainer');
         hikeListContainer.innerHTML = '';
 
         results.forEach(function (hike) {
-          // Only display the hike with the searched name
           if (hike.name.toLowerCase().includes(searchName.toLowerCase())) {
             var hikeHTML = generateHikeHTML(hike);
             hikeListContainer.innerHTML += hikeHTML;
@@ -90,18 +88,15 @@
       `;
       }
 
-      // Function to get the video path
       function getVideoPath(videoName) {
         return `../videos/${videoName}`;
       }
 
-      // Bind the searchHikes function to the form's onsubmit event
       document.getElementById('searchForm').addEventListener('submit', function (event) {
         event.preventDefault();
         searchHikes(event);
       });
 
-      // Function for searching hikes
       function searchHikes(event) {
         var searchInput = document.getElementById('searchInput').value.toLowerCase();
         fetch('../JSON/package.json')
@@ -125,7 +120,6 @@
     });
   </script>
 
-  <!-- Bootstrap JS and Popper.js -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
