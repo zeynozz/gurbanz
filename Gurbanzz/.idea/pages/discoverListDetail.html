@@ -21,7 +21,6 @@
 
     <div class="container" style="margin-top: 200px; margin-right: 450px;">
         <div class="row">
-            <!-- Bereich für Hike-Details -->
             <div class="col-md-5 offset-md-2">
                 <div class="card">
                     <div class="video-container">
@@ -38,19 +37,24 @@
             </div>
 
             <!-- Bereich für Hike-Bewertungen -->
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Rating</h5>
+                    <div class="card-body" style="margin-top: 10px">
+                        <h5 class="card-title" style="margin-bottom: 30px">Rating</h5>
                         <p class="card-text">Stamina: <span id="staminaRating"></span></p>
                         <p class="card-text">Experience: <span id="experienceRating"></span></p>
-                        <p class="card-text">Scenery: <span id="sceneryRating"></span></p>
+                        <p class="card-text" style="margin-bottom: 50px">Scenery: <span id="sceneryRating"></span></p>
+                        <div class="section-divider"></div>
 
-                        <h5 class="card-title">Fitness Level</h5>
-                        <div id="fitnessLevelBar">
+                        <h5 class="card-title" style="margin-bottom: 50px; margin-top: 30px">Fitness Level</h5>
+                        <div id="fitnessLevelBar" style="margin-bottom: 50px">
                             <div id="fitnessLevelIndicator"></div>
                             <div id="marker"></div>
                         </div>
+                        <div class="section-divider"></div>
+
+                        <h5 class="card-title mt-4">Suggested Months</h5>
+                        <div id="monthCalendar" style="margin-bottom: 60px"></div>
                     </div>
                 </div>
             </div>
@@ -90,7 +94,7 @@
                             setStarRating('sceneryRating', selectedHike.scenery);
 
                             setFitnessLevel(selectedHike.fitness_level);
-
+                            createMonthCalendar(selectedHike.month);
                             animateMarker();
                         } else {
                             console.error('HikeId not found');
@@ -136,6 +140,36 @@
                         marker.style.transition = 'none';
                     }, 1500);
                 }, 500);
+            }
+
+            function createMonthCalendar(months) {
+                const monthCalendar = document.getElementById('monthCalendar');
+
+                const allMonths = [
+                    "January", "February", "March", "April",
+                    "May", "June", "July", "August",
+                    "September", "October", "November", "December"
+                ];
+
+                allMonths.forEach((monthName, index) => {
+                    const monthElement = document.createElement('div');
+                    monthElement.classList.add('month');
+                    monthElement.innerText = monthName;
+
+                    if (months.includes(monthName)) {
+                        monthElement.classList.add('filled');
+                    }
+
+                    monthElement.addEventListener('click', () => {
+                        console.log(`Clicked on ${monthName}`);
+                    });
+
+                    monthCalendar.appendChild(monthElement);
+
+                    setTimeout(() => {
+                        monthElement.classList.add('fade-in');
+                    }, index * 100);
+                });
             }
 
             const hikeId = getQueryParam('id');

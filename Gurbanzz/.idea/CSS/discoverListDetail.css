@@ -64,3 +64,38 @@
     border-right: 5px solid transparent;
     border-bottom: 10px solid #333;
 }
+
+#monthCalendar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Anzahl der Spalten auf 6 geändert */
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.month {
+    text-align: center;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filled {
+    background: linear-gradient(#9fc49f, #232222);
+    color: #fff;
+}
+
+.month {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.month.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-divider {
+    border-top: 1px solid #ccc;
+}
