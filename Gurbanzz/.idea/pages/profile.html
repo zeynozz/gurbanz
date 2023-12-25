@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Profile | Gurbanz</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="../CSS/style.css">
         <link rel="stylesheet" type="text/css" href="../CSS/profile.css">
         <link rel="stylesheet" href="../CSS/home.css">
@@ -14,7 +15,7 @@
         <ul>
             <li><a href="../pages/home.html">Home</a></li>
             <li><a href="../pages/discover.html">Discover</a></li>
-            <li><a href ="../pages/profile.html"class="active">Profile</a></li>
+            <li><a href ="../pages/profile.html" class="active">Profile</a></li>
         </ul>
     </header>
     <div class="container">
@@ -23,14 +24,39 @@
                 <div class="left-box">
                     <h4>Profile</h4>
                     <hr style="border-color: white">
+                    <img class="profile-picture" src="../pictures/berg1.png" alt="Profile Picture">
+                    <div class="profile-info"></div>
+                    <a href="../pages/discover.html" class="btn btn-outline-light my-4 my-sm-0">Search</a>
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-12 mb-3">
                         <div class="right-box">
-                            <h4>Hikes i like</h4>
+                            <h4>Performance</h4>
+                            <p>Your perfomance based on your hikes</p>
                             <hr style="border-color: white">
+                            <p class="stamina-label">Stamina:
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </p>
+                            <p class="stamina-label">Experience:
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                            </p>
+                            <p class="stamina-label">Scenery:
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-12 mb-3">
@@ -44,9 +70,56 @@
         </div>
     </div>
 
+    <script>
+        const jsonFilePath = '../JSON/hiker.json';
 
+        function fetchJSONFile(path) {
+            return fetch(path)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error('There was a problem fetching the file:', error);
+                });
+        }
+
+        function displayHikerInfo(data, index) {
+            const leftBox = document.querySelector('.left-box .profile-info');
+            if (!leftBox) return;
+
+            const hiker = data.hiker[index];
+
+            const profileName = document.createElement('p');
+            profileName.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg> ${hiker.name}`;
+            profileName.style.fontSize = '22px';
+
+
+
+            const profileEmail = document.createElement('p');
+            profileEmail.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+            </svg> ${hiker.email}`;
+            profileEmail.style.fontSize = '22px';
+
+
+            leftBox.appendChild(profileName);
+            leftBox.appendChild(profileEmail);
+        }
+
+        fetchJSONFile(jsonFilePath)
+            .then(data => {
+                //First hiker in the json file's informations
+                displayHikerInfo(data, 0);
+            });
+
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>

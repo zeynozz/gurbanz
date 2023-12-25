@@ -45,3 +45,40 @@
     border-radius: 30px;
     text-align: center;
 }
+.profile-picture {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    width: 170px;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 3px;
+    margin-left: 10px;
+}
+
+.profil-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.btn {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    height: 50px;
+}
+
+.btn:hover{
+    background-color:#647868;
+    transform: scale(1.2)
+}
+
+.fa-star {
+    color: yellow;
+    margin-top: 20px;
+}
+.stamina-label {
+    font-size: 18px;
+    font-weight: bold;
+}
