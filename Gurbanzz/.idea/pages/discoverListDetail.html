@@ -7,6 +7,12 @@
     <link rel="stylesheet" type="text/css" href="../CSS/discoverListDetail.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
 <div class="hikeList-background">
@@ -95,7 +101,7 @@
 
                             setFitnessLevel(selectedHike.fitness_level);
                             createMonthCalendar(selectedHike.month);
-                            animateMarker();
+                            animateMarker(selectedHike.fitness_level);
                         } else {
                             console.error('HikeId not found');
                         }
@@ -124,13 +130,12 @@
                 marker.style.left = `${percentage}%`;
             }
 
-            function animateMarker() {
+            function animateMarker(level) {
                 const marker = document.getElementById('marker');
 
                 marker.style.left = '-10%';
 
-                const fitnessLevel = 3;
-                const endPosition = (fitnessLevel - 1) * 25;
+                const endPosition = (level - 1) * 25;
 
                 setTimeout(() => {
                     marker.style.transition = 'left 1.5s ease-out';
