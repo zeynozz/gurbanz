@@ -1,3 +1,6 @@
+body {
+    height: 100%;
+}
 
 .btn {
     background-color: white;
@@ -12,10 +15,10 @@
     transform: scale(1.2)
 }
 
-
 .list-background {
+    min-height: 100vh;
     background-color: #232222;
     background-image: url('../pictures/stars.png');
-    background-repeat: repeat; /* Beispiel: Wiederholung deaktivieren */
+    background-repeat: repeat;
     overflow-x: hidden;
 }

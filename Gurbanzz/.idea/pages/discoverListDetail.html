@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/discoverListDetail.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <div class="hikeList-background">
@@ -20,8 +21,12 @@
 
     <div class="container" style="margin-top: 200px; margin-right: 450px;">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <!-- Bereich für Hike-Details -->
+            <div class="col-md-5 offset-md-2">
                 <div class="card">
+                    <div class="video-container">
+                        <video autoplay loop muted style="height: 100%; width: 100%; object-fit: cover" class="rounded" id="hikeVideo"></video>
+                    </div>
                     <div class="card-body">
                         <h2 class="card-title" id="hikeName"></h2>
                         <p class="card-text" id="distance"></p>
@@ -31,39 +36,62 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Bereich für Hike-Bewertungen -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Rating</h5>
+                        <p class="card-text">Stamina: <span id="staminaRating"></span></p>
+                        <p class="card-text">Experience: <span id="experienceRating"></span></p>
+                        <p class="card-text">Scenery: <span id="sceneryRating"></span></p>
+
+                        <h5 class="card-title">Fitness Level</h5>
+                        <div id="fitnessLevelBar">
+                            <div id="fitnessLevelIndicator"></div>
+                            <div id="marker"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS und Abhängigkeiten hier ... -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Function to extract query parameters from the URL
             function getQueryParam(name) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(name);
             }
 
-            // Function to fetch hike details from an external JSON file
             function fetchHikeDetails(hikeId) {
                 const apiUrl = `../JSON/discover.json`;
 
                 fetch(apiUrl)
                     .then(response => response.json())
                     .then(jsonData => {
-                        // Find the hike with the specified ID
                         const selectedHike = jsonData.hike.find(hike => hike.hike_id == hikeId);
 
-                        // Update the HTML content with hike details
                         if (selectedHike) {
                             document.getElementById('hikeName').innerText = selectedHike.name;
                             document.getElementById('distance').innerText = `Distance: ${selectedHike.distance} km`;
                             document.getElementById('duration').innerText = `Duration: ${selectedHike.duration_hour}h ${selectedHike.duration_min}min`;
                             document.getElementById('heightDifference').innerText = `Height Difference: ${selectedHike.height_difference}m`;
                             document.getElementById('description').innerText = selectedHike.description;
+
+                            document.getElementById('hikeVideo').src = getVideoPath(selectedHike.video);
+                            setStarRating('staminaRating', selectedHike.stamina);
+                            setStarRating('experienceRating', selectedHike.experience);
+                            setStarRating('sceneryRating', selectedHike.scenery);
+
+                            setFitnessLevel(selectedHike.fitness_level);
+
+                            animateMarker();
                         } else {
                             console.error('HikeId not found');
                         }
@@ -73,14 +101,48 @@
                     });
             }
 
-            // Get the hike ID from the query parameter
+            function getVideoPath(videoName) {
+                return `../videos/${videoName}`;
+            }
+
+            function setStarRating(elementId, rating) {
+                const filledStars = '<span class="shine"><i class="fa fa-star"></i></span>'.repeat(rating);
+                const emptyStars = '<i class="fa fa-star-o"></i>'.repeat(5 - rating);
+                document.getElementById(elementId).innerHTML = filledStars + emptyStars;
+            }
+
+            function setFitnessLevel(level) {
+                const indicator = document.getElementById('fitnessLevelIndicator');
+                const marker = document.getElementById('marker');
+
+                const percentage = (level - 1) * 25;
+                indicator.style.left = `calc(${percentage}%)`;
+                marker.style.left = `${percentage}%`;
+            }
+
+            function animateMarker() {
+                const marker = document.getElementById('marker');
+
+                marker.style.left = '-10%';
+
+                const fitnessLevel = 3;
+                const endPosition = (fitnessLevel - 1) * 25;
+
+                setTimeout(() => {
+                    marker.style.transition = 'left 1.5s ease-out';
+                    marker.style.left = `${endPosition}%`;
+
+                    setTimeout(() => {
+                        marker.style.transition = 'none';
+                    }, 1500);
+                }, 500);
+            }
+
             const hikeId = getQueryParam('id');
 
-            // Check if hikeId is valid before fetching details
             if (hikeId) {
                 fetchHikeDetails(hikeId);
             } else {
-                // Handle invalid or missing hikeId
                 console.error('Invalid or missing hikeId');
             }
         });
