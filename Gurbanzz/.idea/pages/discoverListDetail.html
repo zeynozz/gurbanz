@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/discoverListDetail.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/togeojson@0.15.0"></script>
 </head>
 <body>
 <div class="hikeList-background">
@@ -33,6 +35,7 @@
                         <p class="card-text" id="heightDifference"></p>
                         <p class="card-text" id="description"></p>
                     </div>
+                    <div id="map" style="height: 300px; margin-top: 20px;"></div>
                 </div>
             </div>
 
@@ -57,6 +60,13 @@
 
                         <h5 class="card-title mt-4">Suggested Months</h5>
                         <div id="monthCalendar" style="margin-bottom: 60px"></div>
+
+                        <div id="weatherInfo" style="margin-bottom: 20px">
+                            <h5 class="card-title">Weather</h5>
+                            <p id="weatherLocation"></p>
+                            <p id="weatherDetails"></p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -67,6 +77,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -98,6 +110,24 @@
                             setFitnessLevel(selectedHike.fitness_level);
                             createMonthCalendar(selectedHike.month);
                             animateMarker(selectedHike.fitness_level);
+
+                            const gpxData = selectedHike.gpx;
+                            loadAndDisplayGPX(gpxData);
+
+                            const apiKey = '5aff03dfb42c04242e35b363577b9713';
+                            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${selectedHike.weather}&appid=${apiKey}`;
+
+                            fetch(weatherUrl)
+                                .then(response => response.json())
+                                .then(weatherData => {
+                                    document.getElementById('weatherLocation').innerText = `Weather in ${selectedHike.weather}`;
+                                    document.getElementById('weatherDetails').innerText = `Temperature: ${weatherData.main.temp}°C, Description: ${weatherData.weather[0].description}`;
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching weather data:', error);
+                                    document.getElementById('weatherDetails').innerText = 'Weather information not available';
+                                });
+
 
                         } else {
                             console.error('HikeId not found');
@@ -173,6 +203,44 @@
                     }, index * 100);
                 });
             }
+
+            function loadAndDisplayGPX(gpxData) {
+                try {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(gpxData, 'text/xml');
+
+                    const tracks = xmlDoc.querySelectorAll('trk');
+                    const coordinates = [];
+
+                    tracks.forEach(track => {
+                        const segments = track.querySelectorAll('trkseg');
+
+                        segments.forEach(segment => {
+                            const points = segment.querySelectorAll('trkpt');
+
+                            points.forEach(point => {
+                                const lat = parseFloat(point.getAttribute('lat'));
+                                const lon = parseFloat(point.getAttribute('lon'));
+
+                                coordinates.push([lat, lon]);
+                            });
+                        });
+                    });
+
+                    if (!coordinates || coordinates.length === 0) {
+                        console.error('No valid coordinates found in GPX data.');
+                        return;
+                    }
+
+                    const map = L.map('map').setView(coordinates[0], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+                    L.polyline(coordinates, { color: 'red' }).addTo(map);
+                } catch (error) {
+                    console.error('Error parsing GPX:', error);
+                }
+            }
+
 
             const hikeId = getQueryParam('id');
 
