@@ -7,7 +7,6 @@
       "name": "jamesbond07",
       "birthday": "15-05-2005",
       "email": "max.mustermann@example.com",
-      "image": "url/to/image1.jpg",
       "follows": 20,
       "follower": 35,
       "posts": 3
@@ -16,7 +15,6 @@
       "name": "zeyno38",
       "birthday": "22-11-1999",
       "email": "anna.schmidt@example.com",
-      "image": "url/to/image2.jpg",
       "follows": 50,
       "follower": 60,
       "posts": 28
@@ -25,7 +23,6 @@
       "name": "neilarmstrong69",
       "birthday": "10-07-2000",
       "email": "john.doe@example.com",
-      "image": "url/to/image3.jpg",
       "follows": 15,
       "follower": 25,
       "posts": 8
