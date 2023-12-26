@@ -18,19 +18,37 @@
         </ul>
     </header>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-2 mb-5">
-                <div class="left-box">
-                    <h4>Profile</h4>
-                    <hr style="border-color: white">
-                    <img class="profile-picture" src="../pictures/berg1.png" alt="Profile Picture">
-                    <div class="profile-info"></div>
+        <div class="col-lg-2 mb-5">
+            <div class="profile">
+                <div class="profile-info">
+                    <div class="profile-header">
+                        <img class="profile-picture" src="../pictures/berg1.png" alt="Profile Picture">
+                        <div class="profile-details">
+                            <h2 class="username">Username</h2>
+                            <p class="email">example@example.com</p>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat followers">
+                            <p>Followers</p>
+                            <p>0</p>
+                        </div>
+                        <div class="stat following">
+                            <p>Following</p>
+                            <p>0</p>
+                        </div>
+                        <div class="stat posts">
+                            <p>Posts</p>
+                            <p>0</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+        </div>
+        <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-12 mb-3">
-                        <div class="right-box">
+                        <div class="right-box mb-3">
                             <h4>Performance</h4>
                             <p>Your perfomance based on your hikes</p>
                             <hr style="border-color: white">
@@ -69,6 +87,37 @@
     </div>
 
     <script>
+        function displayHikerInfo(data, index) {
+            const leftBox = document.querySelector('.profile-info');
+            if (!leftBox) return;
+
+            const hiker = data.hiker[index];
+
+            const usernameElement = document.querySelector('.profile-info h2');
+            if (usernameElement) {
+                usernameElement.textContent = hiker.name;
+            }
+
+            const emailElement = document.querySelector('.profile-info .email');
+            if (emailElement) {
+                emailElement.textContent = hiker.email;
+            }
+            const followsElement = document.querySelector('.profile-stats .follows p:last-child');
+            if (followsElement) {
+                followsElement.textContent = hiker.follows;
+            }
+
+            const followerElement = document.querySelector('.profile-stats .follower p:last-child');
+            if (followerElement) {
+                followerElement.textContent = hiker.follower;
+            }
+
+            const postsElement = document.querySelector('.profile-stats .posts p:last-child');
+            if (postsElement) {
+                postsElement.textContent = hiker.posts;
+            }
+        }
+
         const jsonFilePath = '../JSON/hiker.json';
 
         function fetchJSONFile(path) {
@@ -84,36 +133,13 @@
                 });
         }
 
-        function displayHikerInfo(data, index) {
-            const leftBox = document.querySelector('.left-box .profile-info');
-            if (!leftBox) return;
-
-            const hiker = data.hiker[index];
-
-            const profileName = document.createElement('p');
-            profileName.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-            </svg> ${hiker.name}`;
-            profileName.style.fontSize = '22px';
-
-
-
-            const profileEmail = document.createElement('p');
-            profileEmail.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-            </svg> ${hiker.email}`;
-            profileEmail.style.fontSize = '22px';
-
-
-            leftBox.appendChild(profileName);
-            leftBox.appendChild(profileEmail);
-        }
-
         fetchJSONFile(jsonFilePath)
             .then(data => {
-                //First hiker in the json file's informations
-                displayHikerInfo(data, 0);
+                if (data.hiker && data.hiker.length > 0) {
+                    displayHikerInfo(data, 0); // Zeigt die Daten des ersten Wanderers an
+                }
             });
+
 
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
