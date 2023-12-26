@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/discoverListDetail.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/togeojson@0.15.0"></script>
 </head>
+
 <body>
 <div class="hikeList-background">
     <header>
@@ -33,6 +36,7 @@
                         <p class="card-text" id="heightDifference"></p>
                         <p class="card-text" id="description"></p>
                     </div>
+                    <div id="map" style="height: 300px; margin-top: 20px;"></div>
                 </div>
             </div>
 
@@ -57,6 +61,15 @@
 
                         <h5 class="card-title mt-4">Suggested Months</h5>
                         <div id="monthCalendar" style="margin-bottom: 60px"></div>
+
+                        <div id="weatherInfo" style="margin-bottom: 20px">
+                            <h5 class="card-title">Weather</h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#FFC125" class="bi bi-brightness-high-fill rotating float-right" viewBox="0 0 16 16">
+                                <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                            </svg>
+                            <p id="weatherLocation" style="font-size: large"></p>
+                            <p id="weatherDetails" style="font-size: larger"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,6 +80,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -98,6 +113,26 @@
                             setFitnessLevel(selectedHike.fitness_level);
                             createMonthCalendar(selectedHike.month);
                             animateMarker(selectedHike.fitness_level);
+
+                            const gpxData = selectedHike.gpx;
+                            loadAndDisplayGPX(gpxData);
+
+                            //hier Key einfügen
+                            const apiKey = '';
+                            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${selectedHike.weather}&appid=${apiKey}`;
+
+                            fetch(weatherUrl)
+                                .then(response => response.json())
+                                .then(weatherData => {
+                                    const temperatureCelsius = kelvinToCelsius(weatherData.main.temp);
+                                    document.getElementById('weatherLocation').innerText = selectedHike.weather;
+                                    document.getElementById('weatherDetails').innerText = `${temperatureCelsius.toFixed(2)}°C
+                                    ${weatherData.weather[0].description}`;
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching weather data:', error);
+                                    document.getElementById('weatherDetails').innerText = 'Weather information not available';
+                                });
 
                         } else {
                             console.error('HikeId not found');
@@ -173,6 +208,49 @@
                     }, index * 100);
                 });
             }
+
+            function loadAndDisplayGPX(gpxData) {
+                try {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(gpxData, 'text/xml');
+
+                    const tracks = xmlDoc.querySelectorAll('trk');
+                    const coordinates = [];
+
+                    tracks.forEach(track => {
+                        const segments = track.querySelectorAll('trkseg');
+
+                        segments.forEach(segment => {
+                            const points = segment.querySelectorAll('trkpt');
+
+                            points.forEach(point => {
+                                const lat = parseFloat(point.getAttribute('lat'));
+                                const lon = parseFloat(point.getAttribute('lon'));
+
+                                coordinates.push([lat, lon]);
+                            });
+                        });
+                    });
+
+                    if (!coordinates || coordinates.length === 0) {
+                        console.error('No valid coordinates found in GPX data.');
+                        return;
+                    }
+
+                    const map = L.map('map').setView(coordinates[0], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+                    L.polyline(coordinates, { color: 'red' }).addTo(map);
+                } catch (error) {
+                    console.error('Error parsing GPX:', error);
+                }
+            }
+
+            function kelvinToCelsius(kelvin) {
+                return kelvin - 273.15;
+            }
+
+
 
             const hikeId = getQueryParam('id');
 
