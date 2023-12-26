@@ -1,45 +1,73 @@
-.page-background {
-    background-color: #232222;
-
-    overflow-x: hidden;
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Tomorrow', sans-serif;
+    height:100vh;
+    background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
 }
-
-body {
-    background-color: #232222;
-    background-image: url('../pictures/stars.png');
-    background-repeat: not-repeat; /* Beispiel: Wiederholung deaktivieren */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+.text{
+    font-family:'Tomorrow', sans-serif;
+    position:absolute;
+    top:10%;
+    color:#fff;
+    text-align:center;
 }
-
-h1 {
-    font-size: 2em;
+h1{
+    font-size:50px;
 }
-
-.navbar {
-    background-color: #232222;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-    z-index: 1000; /* Make sure it appears above other elements */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#fff;
+    right:0;
+    animation:starTwinkle 3s infinite linear;
 }
-
-.navbar a {
-    color: white;
-    margin: 0 15px;
+.astronaut img{
+    width:100px;
+    position:absolute;
+    top:55%;
+    animation:astronautFly 6s infinite linear;
 }
-
-.navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+@keyframes astronautFly{
+    0%{
+        left:-100px;
+    }
+    25%{
+        top:50%;
+        transform:rotate(30deg);
+    }
+    50%{
+        transform:rotate(45deg);
+        top:55%;
+    }
+    75%{
+        top:60%;
+        transform:rotate(30deg);
+    }
+    100%{
+        left:110%;
+        transform:rotate(45deg);
+    }
 }
-
-/* Add padding to the body to prevent content from being hidden under the navbar */
-body {
-    padding-top: 56px; /* Adjust as needed based on your navbar height */
+@keyframes starTwinkle{
+    0%{
+        background:rgba(255,255,255,0.4);
+    }
+    25%{
+        background:rgba(255,255,255,0.8);
+    }
+    50%{
+        background:rgba(255,255,255,1);
+    }
+    75%{
+        background:rgba(255,255,255,0.8);
+    }
+    100%{
+        background:rgba(255,255,255,0.4);
+    }
 }
