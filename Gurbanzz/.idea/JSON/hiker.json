@@ -6,7 +6,7 @@
     {
       "name": "jamesbond07",
       "birthday": "15-05-2005",
-      "email": "max.mustermann@example.com",
+      "email": "james.bond@hotmail.com",
       "follows": 20,
       "follower": 35,
       "posts": 3
@@ -14,7 +14,7 @@
     {
       "name": "zeyno38",
       "birthday": "22-11-1999",
-      "email": "anna.schmidt@example.com",
+      "email": "anna.schmidt@gmail.com",
       "follows": 50,
       "follower": 60,
       "posts": 28
@@ -22,7 +22,7 @@
     {
       "name": "neilarmstrong69",
       "birthday": "10-07-2000",
-      "email": "john.doe@example.com",
+      "email": "john.doe@gmx.com",
       "follows": 15,
       "follower": 25,
       "posts": 8
