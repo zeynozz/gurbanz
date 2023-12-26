@@ -102,12 +102,12 @@
             if (emailElement) {
                 emailElement.textContent = hiker.email;
             }
-            const followsElement = document.querySelector('.profile-stats .follows p:last-child');
+            const followsElement = document.querySelector('.profile-stats .following p:last-child');
             if (followsElement) {
                 followsElement.textContent = hiker.follows;
             }
 
-            const followerElement = document.querySelector('.profile-stats .follower p:last-child');
+            const followerElement = document.querySelector('.profile-stats .followers p:last-child');
             if (followerElement) {
                 followerElement.textContent = hiker.follower;
             }
@@ -136,7 +136,7 @@
         fetchJSONFile(jsonFilePath)
             .then(data => {
                 if (data.hiker && data.hiker.length > 0) {
-                    displayHikerInfo(data, 0); // Zeigt die Daten des ersten Wanderers an
+                    displayHikerInfo(data, 0);
                 }
             });
 
