@@ -1,45 +1,129 @@
-.page-background {
-    background-color: #232222;
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
 
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Tomorrow', sans-serif;
+    height:100vh;
+    min-height: 100vh;
+    background-color: #232222;
+    background-repeat: repeat;
     overflow-x: hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+.text{
+    font-family:'Tomorrow', sans-serif;
+    position:absolute;
+    top:10%;
+    color:#fff;
+    text-align:center;
+}
+h1{
+    font-size:50px;
+}
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:#fff;
+    right:0;
+    animation:starTwinkle 3s infinite linear;
+}
+.astronaut img{
+    width:100px;
+    position:absolute;
+    top:55%;
+    animation:astronautFly 6s infinite linear;
+}
+@keyframes astronautFly{
+    0%{
+        left:-100px;
+    }
+    25%{
+        top:50%;
+        transform:rotate(30deg);
+    }
+    50%{
+        transform:rotate(45deg);
+        top:55%;
+    }
+    75%{
+        top:60%;
+        transform:rotate(30deg);
+    }
+    100%{
+        left:110%;
+        transform:rotate(45deg);
+    }
+}
+@keyframes starTwinkle{
+    0%{
+        background:rgba(255,255,255,0.4);
+    }
+    25%{
+        background:rgba(255,255,255,0.8);
+    }
+    50%{
+        background:rgba(255,255,255,1);
+    }
+    75%{
+        background:rgba(255,255,255,0.8);
+    }
+    100%{
+        background:rgba(255,255,255,0.4);
+    }
 }
 
-body {
-    background-color: #232222;
-    background-image: url('../pictures/stars.png');
-    background-repeat: not-repeat; /* Beispiel: Wiederholung deaktivieren */
-    color: white;
+header
+{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+    z-index: 10000;
 }
-
-h1 {
+header .logo
+{
+    font-family: 'Poppins', sans-serif;
+    color: #ffff;
+    font-weight: 700;
+    text-decoration: none;
     font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
-
-.navbar {
-    background-color: #232222;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-    z-index: 1000; /* Make sure it appears above other elements */
+header ul
+{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.navbar a {
-    color: white;
-    margin: 0 15px;
+header ul li
+{
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    margin-left: 20px;
 }
-
-.navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
+header ul li a
+{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px;
 }
-
-/* Add padding to the body to prevent content from being hidden under the navbar */
-body {
-    padding-top: 56px; /* Adjust as needed based on your navbar height */
+header ul li a:hover , header ul li a.active
+{
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #2b1055;
 }
