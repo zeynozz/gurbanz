@@ -77,6 +77,12 @@ h1{
     }
 }
 
+body {
+    background-color: #232222;
+    background-image: url('../pictures/stars.png');
+    background-repeat: not-repeat;
+    color: white;
+
 header
 {
     font-family: 'Poppins', sans-serif;
@@ -100,12 +106,7 @@ header .logo
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-header ul
-{
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 header ul li
 {
@@ -120,10 +121,4 @@ header ul li a
     padding: 6px 15px;
     color: #fff;
     border-radius: 20px;
-}
-header ul li a:hover , header ul li a.active
-{
-    font-family: 'Poppins', sans-serif;
-    background: #fff;
-    color: #2b1055;
 }
