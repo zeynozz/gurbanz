@@ -4,11 +4,14 @@
   <meta charset="UTF-8">
   <title>No Results | Gurbanz</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="../CSS/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tomorrow&display=swap">
+
   <link rel="stylesheet" type="text/css" href="../CSS/pageNotFound.css">
+
+
 </head>
 <body>
-<header class="navbar">
+<header>
   <a href="../pages/home.html" class="logo">Gurbanz</a>
   <ul>
     <li><a href="../pages/home.html">Home</a></li>
@@ -17,9 +20,43 @@
   </ul>
 </header>
 
+<div style="margin-top: 250px; font-family: 'Tomorrow';" class="text">
+  <div>ERROR</div>
+  <h1>404</h1>
+  <hr>
+  <div>Page Not Found</div>
+  <div>Go back to <a href="../pages/discover.html">Discover</a></div>
+</div>
 
-<h1>No Results</h1>
-<p>Go back to <a href="../pages/discover.html">Discover</a></p>
+<div class="astronaut">
+  <img src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png" alt="" class="src">
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+
+    var body=document.body;
+    setInterval(createStar,100);
+    function createStar(){
+      var right=Math.random()*500;
+      var top=Math.random()*screen.height;
+      var star=document.createElement("div");
+      star.classList.add("star")
+      body.appendChild(star);
+      setInterval(runStar,10);
+      star.style.top=top+"px";
+      function runStar(){
+        if(right>=screen.width){
+          star.remove();
+        }
+        right+=3;
+        star.style.right=right+"px";
+      }
+    }
+  })
+</script>
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
