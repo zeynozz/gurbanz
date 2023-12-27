@@ -7,7 +7,7 @@
 body {
     background-color: #232222;
     background-image: url('../pictures/stars.png');
-    background-repeat: not-repeat; /* Beispiel: Wiederholung deaktivieren */
+    background-repeat: not-repeat;
     color: white;
     display: flex;
     flex-direction: column;
@@ -23,10 +23,10 @@ h1 {
 
 .navbar {
     background-color: #232222;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
-    z-index: 1000; /* Make sure it appears above other elements */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar a {
@@ -39,7 +39,6 @@ h1 {
     font-weight: bold;
 }
 
-/* Add padding to the body to prevent content from being hidden under the navbar */
 body {
-    padding-top: 56px; /* Adjust as needed based on your navbar height */
+    padding-top: 56px;
 }
