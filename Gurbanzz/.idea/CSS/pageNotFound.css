@@ -30,13 +30,13 @@ h1{
     height:2px;
     background:#fff;
     right:0;
-    animation:starTwinkle 3s infinite linear;
+    animation:starTwinkle 100s infinite linear;
 }
 .astronaut img{
     width:100px;
     position:absolute;
     top:55%;
-    animation:astronautFly 6s infinite linear;
+    animation:astronautFly 8s infinite linear;
 }
 @keyframes astronautFly{
     0%{
