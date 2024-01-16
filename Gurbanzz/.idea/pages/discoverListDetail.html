@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../CSS/style.css">
     <link rel="stylesheet" type="text/css" href="../CSS/discoverListDetail.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/togeojson@0.15.0"></script>
 </head>
 
 <body>
@@ -80,7 +79,6 @@
                                 <p id="weatherDetails" style="font-size: larger; font: bold"></p>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -91,6 +89,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -127,7 +127,7 @@
                             loadAndDisplayGPX(gpxData);
 
 
-                            const apiKey = '';
+                            const apiKey = '5aff03dfb42c04242e35b363577b9713';
                             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${selectedHike.weather}&appid=${apiKey}`;
 
                             fetch(weatherUrl)
@@ -249,7 +249,20 @@
                     const map = L.map('map').setView(coordinates[0], 13);
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-                    L.polyline(coordinates, { color: 'red' }).addTo(map);
+                    const waypoints = coordinates.map(coord => L.latLng(coord[0], coord[1]));
+
+                    const control = L.Routing.control({
+                        waypoints: waypoints,
+                        routeWhileDragging: false,
+                        createMarker: function (i, waypoint, n) {
+                            return L.marker(waypoint.latLng, {
+                                draggable: false,
+                                icon: L.divIcon({ className: 'custom-div-icon', html: '' })
+                            });
+                        },
+                        show: false
+                    }).addTo(map);
+
                 } catch (error) {
                     console.error('Error parsing GPX:', error);
                 }
@@ -258,7 +271,6 @@
             function kelvinToCelsius(kelvin) {
                 return kelvin - 273.15;
             }
-
             const hikeId = getQueryParam('id');
 
             if (hikeId) {
