@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Profile | Gurbanz</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="../CSS/style.css">
-        <link rel="stylesheet" type="text/css" href="../CSS/profile.css">
-    </head>
-    <body class="profile-background">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurbanz | Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/profile.css">
+</head>
+<body>
+<div class="profile-background">
     <header>
         <a href="../pages/home.html" class="logo">Gurbanz</a>
         <ul>
@@ -18,149 +20,173 @@
         </ul>
     </header>
     <div class="container">
-        <div class="col-lg-2 mb-5">
-            <div class="profile">
-                <div class="profile-info">
-                    <div class="profile-header">
-                        <img class="profile-picture" src="../pictures/berg1.png" alt="Profile Picture">
-                        <div class="profile-details">
-                            <h2 class="username">Username</h2>
-                            <p class="email">example@example.com</p>
-                        </div>
-                    </div>
-                    <div class="profile-stats">
-                        <div class="stat followers">
-                            <p>Followers</p>
-                            <p>0</p>
-                        </div>
-                        <div class="stat following">
-                            <p>Following</p>
-                            <p>0</p>
-                        </div>
-                        <div class="stat posts">
-                            <p>Posts</p>
-                            <p>0</p>
-                        </div>
-                    </div>
+        <div class="profile-banner"></div>
+        <div class="profile-picture-container">
+            <img class="profile-picture" src="../pictures/berg1.png" alt="Profile Picture">
+        </div>
+        <h2 class="username" style="margin-top: 70px">zoexplore38</h2>
+
+        <div class="profile-stats">
+            <div class="stat followers">
+                <p>Followers</p>
+                <p>138</p>
+            </div>
+            <div class="stat following">
+                <p>Following</p>
+                <p>38</p>
+            </div>
+            <div class="stat posts">
+                <p>Posts</p>
+                <p>6</p>
+            </div>
+        </div>
+
+        <div class="posts">
+            <div class="row">
+                <div class="col-lg-4 mb-3">
+                    <img src="../pictures/pic1_profile.jpg" class="img-fluid custom-image" alt="Bild 1" data-toggle="modal" data-target="#imageModal1">
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <img src="../pictures/pic2_profile.jpg" class="img-fluid custom-image" alt="Bild 2" data-toggle="modal" data-target="#imageModal2">
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <img src="../pictures/pic3_profile.jpg" class="img-fluid custom-image" alt="Bild 3" data-toggle="modal" data-target="#imageModal3">
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <img src="../pictures/pic4_profile.jpg" class="img-fluid custom-image" alt="Bild 4" data-toggle="modal" data-target="#imageModal4">
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <img src="../pictures/pic5_profile.jpeg" class="img-fluid custom-image" alt="Bild 5" data-toggle="modal" data-target="#imageModal5">
+                </div>
+                <div class="col-lg-4 mb-3">
+                    <img src="../pictures/pic6_profile.jpg" class="img-fluid custom-image" alt="Bild 6" data-toggle="modal" data-target="#imageModal6">
                 </div>
             </div>
         </div>
-        <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-12 mb-3">
-                        <div class="right-box mb-3">
-                            <h4>Performance</h4>
-                            <p>Your perfomance based on your hikes</p>
-                            <hr style="border-color: white">
-                            <p class="stamina-label">Stamina:
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </p>
-                            <p class="stamina-label">Experience:
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </p>
-                            <p class="stamina-label">Scenery:
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 mb-3">
-                        <div class="right-box">
-                            <h4>Posts</h4>
-                            <hr style="border-color: white">
+    </div>
+</div>
 
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <div id="slider" class="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img src="../pictures/picture2.jpg" class="d-block w-100" alt="Bild 1" style="border-radius: 30px">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="../pictures/picture3.jpg" class="d-block w-100" alt="Bild 2" style="border-radius: 30px">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="../pictures/picture1.jpg" class="d-block w-100" alt="Bild 3" style="border-radius: 30px">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModal1Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModal1Label">Family Trip :)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../pictures/pic1_profile.jpg" class="img-fluid" alt="Bild 1">
+                <p>
+                    <i class="fa fa-thumbs-up"></i> <span id="likes1" class="mr-3">62</span>
+                    <i class="fa fa-thumbs-down"></i> <span id="dislikes1">4</span>
+                </p>
+            </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="imageModal2" tabindex="-1" role="dialog" aria-labelledby="imageModal2Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModal2Label">Hello Spring!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../pictures/pic2_profile.jpg" class="img-fluid" alt="Bild 2">
+                <p>
+                    <i class="fa fa-thumbs-up"></i> <span id="likes2" class="mr-3">89</span>
+                    <i class="fa fa-thumbs-down"></i> <span id="dislikes2">5</span>
+                </p>
+            </div>
+        </div>
     </div>
-    <script>
-        function displayHikerInfo(data, index) {
-            const leftBox = document.querySelector('.profile-info');
-            if (!leftBox) return;
+</div>
 
-            const hiker = data.hiker[index];
+<div class="modal fade" id="imageModal3" tabindex="-1" role="dialog" aria-labelledby="imageModal3Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModal3Label">Gorgeous View!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../pictures/pic3_profile.jpg" class="img-fluid" alt="Bild 3">
+                <p>
+                    <i class="fa fa-thumbs-up"></i> <span id="likes3" class="mr-3">94</span>
+                    <i class="fa fa-thumbs-down"></i> <span id="dislikes3">2</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-            const usernameElement = document.querySelector('.profile-info h2');
-            if (usernameElement) {
-                usernameElement.textContent = hiker.name;
-            }
+<div class="modal fade" id="imageModal4" tabindex="-1" role="dialog" aria-labelledby="imageModal4Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModal4Label">Relax and enjoy the view :)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../pictures/pic4_profile.jpg" class="img-fluid" alt="Bild 4">
+                <p>
+                    <i class="fa fa-thumbs-up"></i> <span id="likes4" class="mr-3">78</span>
+                    <i class="fa fa-thumbs-down"></i> <span id="dislikes4">3</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-            const emailElement = document.querySelector('.profile-info .email');
-            if (emailElement) {
-                emailElement.textContent = hiker.email;
-            }
-            const followsElement = document.querySelector('.profile-stats .following p:last-child');
-            if (followsElement) {
-                followsElement.textContent = hiker.follows;
-            }
+<div class="modal fade" id="imageModal5" tabindex="-1" role="dialog" aria-labelledby="imageModal5Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModal5Label">:)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../pictures/pic5_profile.jpeg" class="img-fluid" alt="Bild 5">
+                <p>
+                    <i class="fa fa-thumbs-up"></i> <span id="likes5" class="mr-3">63</span>
+                    <i class="fa fa-thumbs-down"></i> <span id="dislikes5">6</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-            const followerElement = document.querySelector('.profile-stats .followers p:last-child');
-            if (followerElement) {
-                followerElement.textContent = hiker.follower;
-            }
-
-            const postsElement = document.querySelector('.profile-stats .posts p:last-child');
-            if (postsElement) {
-                postsElement.textContent = hiker.posts;
-            }
-        }
-
-        const jsonFilePath = '../JSON/hiker.json';
-
-        function fetchJSONFile(path) {
-            return fetch(path)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    console.error('There was a problem fetching the file:', error);
-                });
-        }
-
-        fetchJSONFile(jsonFilePath)
-            .then(data => {
-                if (data.hiker && data.hiker.length > 0) {
-                    displayHikerInfo(data, 0);
-                }
-            });
-
-
-    </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </body>
+<div class="modal fade" id="imageModal6" tabindex="-1" role="dialog" aria-labelledby="imageModal6Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModal6Label">Nature...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="../pictures/pic6_profile.jpg" class="img-fluid" alt="Bild 6">
+                <p>
+                    <i class="fa fa-thumbs-up"></i> <span id="likes6" class="mr-3">118</span>
+                    <i class="fa fa-thumbs-down"></i> <span id="dislikes6">2</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
