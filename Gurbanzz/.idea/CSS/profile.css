@@ -29,6 +29,27 @@
     margin-bottom: 10px;
 }
 
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    margin-top: 60px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat p:first-child {
+    font-weight: bold;
+    color: #333;
+}
+
+.stat p:last-child {
+    margin-top: 5px;
+    font-size: 18px;
+}
+
 .posts {
     text-align: center;
     margin-bottom: 30px;
