@@ -36,7 +36,7 @@
         event.preventDefault();
 
         var searchInput = document.getElementById('searchInput').value.toLowerCase();
-        fetch('../JSON/package.json')
+        fetch('../JSON/discover.json')
             .then(response => response.json())
             .then(data => {
                 var results = data.hike.filter(function (hike) {
