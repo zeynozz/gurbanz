@@ -79,6 +79,7 @@ section img#mountains_front {
     height: 100vh;
     perspective: 100px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .image-stack img {

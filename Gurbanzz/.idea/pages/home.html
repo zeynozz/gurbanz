@@ -50,9 +50,9 @@
         <!--Landschaft-Image-Stack-->
         <div class="container mt-4" style="justify-content: center">
             <div class="image-stack">
-                <img src="../pictures/landscape1.jpg" alt="Bild 1">
-                <img src="../pictures/landscape2.jpg" alt="Bild 2">
-                <img src="../pictures/landscape3.jpg" alt="Bild 3">
+                <img src="../pictures/landscape1.jpg" alt="Bild 1" onclick="bringToFront(this)">
+                <img src="../pictures/landscape2.jpg" alt="Bild 2" onclick="bringToFront(this)">
+                <img src="../pictures/landscape3.jpg" alt="Bild 3" onclick="bringToFront(this)">
             </div>
         </div>
     </div>
@@ -76,7 +76,20 @@
             btn.style.marginTop = value * 1.5 + 'px';
             header.style.top = value * 0.5 + 'px';
         })
+
+        function bringToFront(element) {
+            $(".image-stack img").css({
+                "z-index": "1",
+                "transform": "rotateZ(-20deg) translateX(0%) translateY(10%) scale(0.9)"
+            });
+
+            $(element).css({
+                "z-index": "3",
+                "transform": "rotateZ(0deg) translateX(0%) translateY(0) scale(1)"
+            });
+        }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
