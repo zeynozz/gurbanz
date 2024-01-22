@@ -22,3 +22,9 @@ body {
     background-repeat: repeat;
     overflow-x: hidden;
 }
+
+.btn-more {
+    color: white;
+    background:#232222;
+    display: inline;
+}
